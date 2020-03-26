@@ -44,7 +44,7 @@ class Game: ObservableObject {
         // -----------
         //    |   |
         if board[0] != nil && board[0] == board[1] && board[1] == board[2] {
-            winLine = ([Line.column1, 1], [0, 1])
+            winLine = Line.horizontalTop
             isGameOver = true
             return
         }
@@ -54,7 +54,7 @@ class Game: ObservableObject {
         // -----------
         //    |   |
         if board[3] != nil && board[3] == board[4] && board[4] == board[5] {
-            winLine = ([1.5, 0.5], [0, 0.5])
+            winLine = Line.horizontalMiddle
             isGameOver = true
             return
         }
@@ -65,7 +65,7 @@ class Game: ObservableObject {
         // -----------
         //  x | x | x
         if board[6] != nil && board[6] == board[7] && board[7] == board[8] {
-            winLine = ([1, 0], [0, 0])
+            winLine = Line.horizontalBottom
             isGameOver = true
             return
         }
@@ -76,7 +76,7 @@ class Game: ObservableObject {
         // -----------
         //  x |   |
         if board[0] != nil && board[0] == board[3] && board[3] == board[6] {
-            winLine = ([1, 1], [1, 0])
+            winLine = Line.verticalLeading
             isGameOver = true
             return
         }
@@ -87,7 +87,7 @@ class Game: ObservableObject {
         // -----------
         //    | x |
         if board[1] != nil && board[1] == board[4] && board[4] == board[7] {
-            winLine = ([0.5, 1], [0.5, 0])
+            winLine = Line.verticalMiddle
             isGameOver = true
             return
         }
@@ -98,7 +98,7 @@ class Game: ObservableObject {
         // -----------
         //    |   | x
         if board[2] != nil && board[2] == board[5] && board[5] == board[8] {
-            winLine = ([0, 1], [0, 0])
+            winLine = Line.verticalTrailing
             isGameOver = true
             return
         }
@@ -109,7 +109,7 @@ class Game: ObservableObject {
         // -----------
         //    |   | x
         if board[0] != nil && board[0] == board[4] && board[4] == board[8] {
-            winLine = ([1, 1], [0, 0])
+            winLine = Line.diagonalTopLeft
             isGameOver = true
             return
         }
@@ -120,7 +120,7 @@ class Game: ObservableObject {
         // -----------
         //  x |   |
         if board[2] != nil && board[2] == board[4] && board[4] == board[6] {
-            winLine = ([0, 1], [1, 0])
+            winLine = Line.diagonalTopRight
             isGameOver = true
             return
         }

@@ -11,15 +11,19 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject var game: Game
     var body: some View {
-        VStack {
-            BoardRowView(rowIndex: 0)
-            BoardRowView(rowIndex: 1)
-            BoardRowView(rowIndex: 2)
-        }
-        .padding()
-        .sheet(isPresented: self.$game.isGameOver) {
-            GameOverView()
-                .environmentObject(self.game)
+        NavigationView {
+            VStack {
+                BoardRowView(rowIndex: 0)
+                BoardRowView(rowIndex: 1)
+                BoardRowView(rowIndex: 2)
+            }
+            .padding()
+            .sheet(isPresented: self.$game.isGameOver) {
+                GameOverView()
+                    .environmentObject(self.game)
+            }
+            .navigationBarTitle("\(game.activePlayer?.title ?? "")", displayMode:.inline )
+            .background(Color.gray)
         }
     }
 }

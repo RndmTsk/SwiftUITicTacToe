@@ -42,6 +42,7 @@ struct WinLineView: View {
     let start: CGPoint
     let end: CGPoint
     let color: Color
+    @EnvironmentObject var game: Game
 
     @State private var isAnimating = false
     var body: some View {
@@ -55,6 +56,9 @@ struct WinLineView: View {
             .onAppear {
                 withAnimation {
                     self.isAnimating.toggle()
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    self.game.isShowingPlayAgain = true
                 }
             }
     }

@@ -34,17 +34,11 @@ struct GameOverView: View {
             }
             .padding([.bottom], 16)
             Button(action: {
-                self.resetGame()
+                self.game.reset()
             }) {
                 Text("Play Again?")
             }
         }
-    }
-
-    private func resetGame() {
-        game.board = Array(repeating: nil, count: 9)
-        game.activePlayer = true
-        game.isGameOver = false
     }
 }
 

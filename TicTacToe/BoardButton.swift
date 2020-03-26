@@ -41,7 +41,6 @@ struct BoardButton: View {
         }
         guard !game.isGameOver else { return }
         game.activePlayer?.toggle()
-        print("Toggled activePlayer: \(game.activePlayer!)")
     }
 }
 

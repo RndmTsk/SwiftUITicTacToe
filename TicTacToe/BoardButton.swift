@@ -25,7 +25,6 @@ struct BoardButton: View {
     var body: some View {
         Rectangle()
             .foregroundColor(.white)
-            .animation(.easeInOut(duration: 0.3))
             .transition(.opacity)
             .padding(0.5)
             .onTapGesture {
@@ -42,6 +41,7 @@ struct BoardButton: View {
         }
         guard !game.isGameOver else { return }
         game.activePlayer?.toggle()
+        print("Toggled activePlayer: \(game.activePlayer!)")
     }
 }
 

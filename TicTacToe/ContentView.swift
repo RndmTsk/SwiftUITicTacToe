@@ -10,17 +10,25 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var game: Game
+    var gameOverOverlay: some View {
+        if let winLine = game.winLine {
+            return AnyView(WinLineView(start: winLine.start, end: winLine.end, color: game.activePlayer!.color))
+        } else {
+            return AnyView(EmptyView())
+        }
+    }
+
     var body: some View {
         VStack {
             BoardRowView(rowIndex: 0)
             BoardRowView(rowIndex: 1)
             BoardRowView(rowIndex: 2)
-        }
+        }.overlay(gameOverOverlay)
         .padding()
-        .sheet(isPresented: self.$game.isGameOver) {
-            GameOverView()
-                .environmentObject(self.game)
-        }
+//        .sheet(isPresented: self.$game.isGameOver) {
+//            GameOverView()
+//                .environmentObject(self.game)
+//        }
     }
 }
 

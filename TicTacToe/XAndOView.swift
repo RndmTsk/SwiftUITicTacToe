@@ -52,7 +52,7 @@ struct OView: View {
              .foregroundColor(color)
              .padding()
              .rotationEffect(.degrees(5), anchor: .center)
-             .animation(Animation.linear(duration: 1))
+            .animation(Animation.linear(duration: 0.3))
              .onAppear() {
                 self.aniamte.toggle()
         }
@@ -69,7 +69,7 @@ struct XView: View {
             .stroke(lineWidth: 15)
             .foregroundColor(color)
             .padding()
-            .animation(Animation.linear(duration: 1))
+            .animation(Animation.linear(duration: 0.3))
             .onAppear() {
                self.aniamte.toggle()
             }

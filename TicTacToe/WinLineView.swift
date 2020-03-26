@@ -48,7 +48,10 @@ struct WinLineView: View {
         Line(start: start, end: end)
             .trim(from: isAnimating ? 0 : 1, to: 1)
             .stroke(color, lineWidth: 15)
-            .animation(Animation.easeInOut(duration: 2.0))
+            .animation(Animation
+                .easeInOut(duration: 0.6)
+            .delay(0.5))
+            .padding()
             .onAppear {
                 withAnimation {
                     self.isAnimating.toggle()

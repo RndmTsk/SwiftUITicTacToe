@@ -31,56 +31,63 @@ struct Line: Shape {
     //    |   |
     // -----------
     //    |   |
-    static let horizontalTop = ([Line.column1, Line.row1],
-                                [Line.column3, Line.row1])
+    static let horizontalTop: WinLine = ([Line.column1, Line.row1],
+                                         [Line.column3, Line.row1])
     //    |   |
     // -----------
     //  x | x | x
     // -----------
     //    |   |
-    static let horizontalMiddle = ([], [])
+    static let horizontalMiddle: WinLine  = ([Line.column1, Line.row2],
+                                             [Line.column3, Line.row2])
 
     //    |   |
     // -----------
     //    |   |
     // -----------
     //  x | x | x
-    static let horizontalBottom = ([], [])
+    static let horizontalBottom: WinLine = ([Line.column1, Line.row3],
+                                            [Line.column3, Line.row3])
 
     //  x |   |
     // -----------
     //  x |   |
     // -----------
     //  x |   |
-    static let verticalLeading = ([], [])
+    static let verticalLeading: WinLine = ([Line.column1, Line.row1],
+                                           [Line.column1, Line.row3])
 
     //    | x |
     // -----------
     //    | x |
     // -----------
     //    | x |
-    static let verticalMiddle = ([], [])
+    static let verticalMiddle: WinLine = ([Line.column2, Line.row1],
+                                          [Line.column2, Line.row3])
 
     //    |   | x
     // -----------
     //    |   | x
     // -----------
     //    |   | x
-    static let verticalTrailing = ([], [])
+    static let verticalTrailing: WinLine = ([Line.column3, Line.row1],
+                                            [Line.column3, Line.row3])
 
     //  x |   |
     // -----------
     //    | x |
     // -----------
     //    |   | x
-    static let diagonalTopLeft = ([], [])
+    static let diagonalTopLeft: WinLine = ([Line.column1, Line.row1],
+                                           [Line.column3, Line.row3])
 
     //    |   | x
     // -----------
     //    | x |
     // -----------
     //  x |   |
-    static let diagonalTopRight = ([], [])
+    static let diagonalTopRight: WinLine = ([Line.column3, Line.row1],
+                                            [Line.column1, Line.row1])
 
     //       Column 1 |   Column 2 |  Column 3
     // Row 1  [1, 1]  |   [2, 1]   |   [3, 1]

@@ -18,21 +18,21 @@ extension CGPoint: ExpressibleByArrayLiteral {
 typealias WinLine = (start: CGPoint, end: CGPoint)
 
 struct Line: Shape {
-    static let horizontalColumn1: CGFloat = 0.2
-    static let verticalColumn1: CGFloat = 0.2
-    static let diagonalColumn1: CGFloat = 0
+    static let horizontalColumn1: CGFloat = 0.1
+    static let verticalColumn1: CGFloat = 0.15
+    static let diagonalColumn1: CGFloat = 0.1
     static let column2: CGFloat = 0.5
-    static let horizontalColumn3: CGFloat = 0.8
-    static let verticalColumn3: CGFloat = 0.8
-    static let diagonalColumn3: CGFloat = 1
+    static let horizontalColumn3: CGFloat = 0.9
+    static let verticalColumn3: CGFloat = 0.85
+    static let diagonalColumn3: CGFloat = 0.9
 
-    static let horizontalRow1: CGFloat = 0.25
+    static let horizontalRow1: CGFloat = 0.1
     static let verticalRow1: CGFloat = 0.1
-    static let diagonalRow1: CGFloat = 0
+    static let diagonalRow1: CGFloat = 0.1
     static let row2: CGFloat = 0.5
-    static let horizontalRow3: CGFloat = 0.75
+    static let horizontalRow3: CGFloat = 0.9
     static let verticalRow3: CGFloat = 0.9
-    static let diagonalRow3: CGFloat = 1
+    static let diagonalRow3: CGFloat = 0.9
 
     //  x | x | x
     // -----------
@@ -94,8 +94,8 @@ struct Line: Shape {
     //    | x |
     // -----------
     //  x |   |
-    static let diagonalTopRight: WinLine = ([Line.diagonalColumn3, Line.diagonalRow3],
-                                            [Line.diagonalColumn1, Line.diagonalRow1])
+    static let diagonalTopRight: WinLine = ([Line.diagonalColumn3, Line.diagonalRow1],
+                                            [Line.diagonalColumn1, Line.diagonalRow3])
 
     //       Column 1 |   Column 2 |  Column 3
     // Row 1  [1, 1]  |   [2, 1]   |   [3, 1]

@@ -18,7 +18,10 @@ extension Bool {
     var gameOverMessage: String { "\(self ? "X" : "O") Wins!" }
 }
 
+typealias WinLine = (start: CGPoint, end: CGPoint)
+
 class Game: ObservableObject {
+    @Published var winLine: WinLine?
     @Published var isGameOver = false
     @Published var activePlayer: Bool? = true
     @Published var board: [Bool?] = Array(repeating: nil, count: 9) {
@@ -34,6 +37,7 @@ class Game: ObservableObject {
         // -----------
         //    |   |
         if board[0] != nil && board[0] == board[1] && board[1] == board[2] {
+            winLine = ([1, 1], [0, 1])
             isGameOver = true
             return
         }
@@ -43,6 +47,7 @@ class Game: ObservableObject {
         // -----------
         //    |   |
         if board[3] != nil && board[3] == board[4] && board[4] == board[5] {
+            winLine = ([1.5, 0.5], [0, 0.5])
             isGameOver = true
             return
         }
@@ -53,6 +58,7 @@ class Game: ObservableObject {
         // -----------
         //  x | x | x
         if board[6] != nil && board[6] == board[7] && board[7] == board[8] {
+            winLine = ([1, 0], [0, 0])
             isGameOver = true
             return
         }
@@ -63,6 +69,7 @@ class Game: ObservableObject {
         // -----------
         //  x |   |
         if board[0] != nil && board[0] == board[3] && board[3] == board[6] {
+            winLine = ([1, 1], [1, 0])
             isGameOver = true
             return
         }
@@ -73,6 +80,7 @@ class Game: ObservableObject {
         // -----------
         //    | x |
         if board[1] != nil && board[1] == board[4] && board[4] == board[7] {
+            winLine = ([0.5, 1], [0.5, 0])
             isGameOver = true
             return
         }
@@ -83,6 +91,7 @@ class Game: ObservableObject {
         // -----------
         //    |   | x
         if board[2] != nil && board[2] == board[5] && board[5] == board[8] {
+            winLine = ([0, 1], [0, 0])
             isGameOver = true
             return
         }
@@ -93,6 +102,7 @@ class Game: ObservableObject {
         // -----------
         //    |   | x
         if board[0] != nil && board[0] == board[4] && board[4] == board[8] {
+            winLine = ([1, 1], [0, 0])
             isGameOver = true
             return
         }
@@ -103,6 +113,7 @@ class Game: ObservableObject {
         // -----------
         //  x |   |
         if board[2] != nil && board[2] == board[4] && board[4] == board[6] {
+            winLine = ([0, 1], [1, 0])
             isGameOver = true
             return
         }

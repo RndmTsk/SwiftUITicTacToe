@@ -15,14 +15,79 @@ extension CGPoint: ExpressibleByArrayLiteral {
     }
 }
 
-
+typealias WinLine = (start: CGPoint, end: CGPoint)
 
 struct Line: Shape {
-    //  [1, 1]  |  [0.5, 1]  | [0, 1]
-    // --------------------------------
-    // [1, 0.5] | [0.5, 0.5] | [0, 0.5]
-    // --------------------------------
-    //  [1, 0]  |  [0.5, 0]  | [0, 0]
+    static let column1: CGFloat = 0.2
+    static let column2: CGFloat = 0.5
+    static let column3: CGFloat = 0.8
+
+    static let row1: CGFloat = 0.1
+    static let row2: CGFloat = 0.5
+    static let row3: CGFloat = 0.9
+
+    //  x | x | x
+    // -----------
+    //    |   |
+    // -----------
+    //    |   |
+    static let horizontalTop = ([Line.column1, Line.row1],
+                                [Line.column3, Line.row1])
+    //    |   |
+    // -----------
+    //  x | x | x
+    // -----------
+    //    |   |
+    static let horizontalMiddle = ([], [])
+
+    //    |   |
+    // -----------
+    //    |   |
+    // -----------
+    //  x | x | x
+    static let horizontalBottom = ([], [])
+
+    //  x |   |
+    // -----------
+    //  x |   |
+    // -----------
+    //  x |   |
+    static let verticalLeading = ([], [])
+
+    //    | x |
+    // -----------
+    //    | x |
+    // -----------
+    //    | x |
+    static let verticalMiddle = ([], [])
+
+    //    |   | x
+    // -----------
+    //    |   | x
+    // -----------
+    //    |   | x
+    static let verticalTrailing = ([], [])
+
+    //  x |   |
+    // -----------
+    //    | x |
+    // -----------
+    //    |   | x
+    static let diagonalTopLeft = ([], [])
+
+    //    |   | x
+    // -----------
+    //    | x |
+    // -----------
+    //  x |   |
+    static let diagonalTopRight = ([], [])
+
+    //       Column 1 |   Column 2 |  Column 3
+    // Row 1  [1, 1]  |   [2, 1]   |   [3, 1]
+    // ---------------------------------------
+    // Row 2  [1, 2]  |   [2, 2]   |   [3, 2]
+    // ---------------------------------------
+    // Row 3  [1, 3] |    [2, 3]   |   [3, 3]
 
     let start: CGPoint
     let end: CGPoint
@@ -52,7 +117,6 @@ struct WinLineView: View {
             .animation(Animation
                 .easeInOut(duration: 0.6)
             .delay(0.5))
-            .padding()
             .onAppear {
                 withAnimation {
                     self.isAnimating.toggle()
@@ -66,7 +130,80 @@ struct WinLineView: View {
 
 struct WinLineView_Previews: PreviewProvider {
     static var previews: some View {
-        WinLineView(start: [1, 1], end: [0, 0], color: .red)
+        Group {
+            //  x | x | x
+            // -----------
+            //    |   |
+            // -----------
+            //    |   |
+            WinLineView(start: [Line.column1, Line.row1],
+                        end: [Line.column3, Line.row1],
+                        color: .red)
+
+            //    |   |
+            // -----------
+            //  x | x | x
+            // -----------
+            //    |   |
+            WinLineView(start: [Line.column1, Line.row2],
+                        end: [Line.column3, Line.row2],
+                        color: .red)
+
+            //    |   |
+            // -----------
+            //    |   |
+            // -----------
+            //  x | x | x
+            WinLineView(start: [Line.column1, Line.row3],
+                        end: [Line.column3, Line.row3],
+                        color: .red)
+
+            //  x |   |
+            // -----------
+            //  x |   |
+            // -----------
+            //  x |   |
+            WinLineView(start: [Line.column1, Line.row1],
+                        end: [Line.column1, Line.row3],
+                        color: .red)
+
+            //    | x |
+            // -----------
+            //    | x |
+            // -----------
+            //    | x |
+            WinLineView(start: [Line.column2, Line.row1],
+                        end: [Line.column2, Line.row3],
+                        color: .red)
+
+            //    |   | x
+            // -----------
+            //    |   | x
+            // -----------
+            //    |   | x
+            WinLineView(start: [Line.column3, Line.row1],
+                        end: [Line.column3, Line.row3],
+                        color: .red)
+
+            //  x |   |
+            // -----------
+            //    | x |
+            // -----------
+            //    |   | x
+            WinLineView(start: [Line.column1, Line.row1],
+                        end: [Line.column3, Line.row3],
+                        color: .red)
+
+            //    |   | x
+            // -----------
+            //    | x |
+            // -----------
+            //  x |   |
+            WinLineView(start: [Line.column3, Line.row1],
+                        end: [Line.column1, Line.row3],
+                        color: .red)
+
+        }
             .previewLayout(.sizeThatFits)
     }
 }

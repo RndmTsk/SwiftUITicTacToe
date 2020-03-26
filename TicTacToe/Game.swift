@@ -18,8 +18,6 @@ extension Bool {
     var gameOverMessage: String { "\(self ? "X" : "O") Wins!" }
 }
 
-typealias WinLine = (start: CGPoint, end: CGPoint)
-
 class Game: ObservableObject {
     @Published var winLine: WinLine?
     @Published var isGameOver = false
@@ -35,8 +33,8 @@ class Game: ObservableObject {
         board = Array(repeating: nil, count: 9)
         activePlayer = true
         winLine = nil
-        isGameOver = false
         isShowingPlayAgain = false
+        isGameOver = false
     }
 
     private func checkGameOver() {
@@ -46,7 +44,7 @@ class Game: ObservableObject {
         // -----------
         //    |   |
         if board[0] != nil && board[0] == board[1] && board[1] == board[2] {
-            winLine = ([1, 1], [0, 1])
+            winLine = ([Line.column1, 1], [0, 1])
             isGameOver = true
             return
         }

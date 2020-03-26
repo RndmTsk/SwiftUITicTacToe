@@ -33,10 +33,14 @@ struct X: Shape {
     func path(in rect: CGRect) -> Path {
         let radius = rect.minDimension / 2
         var path = Path()
-        path.move(to: rect.center ++ radius)
-        path.addLine(to: rect.center -- radius)
-        path.move(to: rect.center -+ radius)
+        path.move(to: rect.center)
+        path.addLine(to: rect.center ++ radius)
+        path.move(to: rect.center)
         path.addLine(to: rect.center +- radius)
+        path.move(to: rect.center)
+        path.addLine(to: rect.center -+ radius)
+        path.move(to: rect.center)
+        path.addLine(to: rect.center -- radius)
 
         return path
     }
@@ -44,36 +48,21 @@ struct X: Shape {
 
 struct OView: View {
     let color: Color
-    @State var aniamte = false
     var body: some View {
         Circle()
-             .trim(from: aniamte ? 0 : 1, to: 1)
-             .stroke(lineWidth: 15)
-             .foregroundColor(color)
-             .padding()
-             .rotationEffect(.degrees(5), anchor: .center)
-             .animation(Animation.linear(duration: 1))
-             .onAppear() {
-                self.aniamte.toggle()
-        }
+            .stroke(lineWidth: 15)
+            .foregroundColor(color)
+            .padding()
     }
 }
 
 struct XView: View {
     let color: Color
-    @State var aniamte = false
     var body: some View {
-        ZStack {
-            X()
-            .trim(from: aniamte ? 0 : 1, to: 1)
-            .stroke(lineWidth: 15)
-            .foregroundColor(color)
-            .padding()
-            .animation(Animation.linear(duration: 1))
-            .onAppear() {
-               self.aniamte.toggle()
-            }
-        }
+        X()
+        .stroke(lineWidth: 15)
+        .foregroundColor(color)
+        .padding()
     }
 }
 

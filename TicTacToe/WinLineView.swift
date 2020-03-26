@@ -18,76 +18,84 @@ extension CGPoint: ExpressibleByArrayLiteral {
 typealias WinLine = (start: CGPoint, end: CGPoint)
 
 struct Line: Shape {
-    static let column1: CGFloat = 0.2
+    static let horizontalColumn1: CGFloat = 0.2
+    static let verticalColumn1: CGFloat = 0.2
+    static let diagonalColumn1: CGFloat = 0
     static let column2: CGFloat = 0.5
-    static let column3: CGFloat = 0.8
+    static let horizontalColumn3: CGFloat = 0.8
+    static let verticalColumn3: CGFloat = 0.8
+    static let diagonalColumn3: CGFloat = 1
 
-    static let row1: CGFloat = 0.1
+    static let horizontalRow1: CGFloat = 0.25
+    static let verticalRow1: CGFloat = 0.1
+    static let diagonalRow1: CGFloat = 0
     static let row2: CGFloat = 0.5
-    static let row3: CGFloat = 0.9
+    static let horizontalRow3: CGFloat = 0.75
+    static let verticalRow3: CGFloat = 0.9
+    static let diagonalRow3: CGFloat = 1
 
     //  x | x | x
     // -----------
     //    |   |
     // -----------
     //    |   |
-    static let horizontalTop: WinLine = ([Line.column1, Line.row1],
-                                         [Line.column3, Line.row1])
+    static let horizontalTop: WinLine = ([Line.horizontalColumn1, Line.horizontalRow1],
+                                         [Line.horizontalColumn3, Line.horizontalRow1])
     //    |   |
     // -----------
     //  x | x | x
     // -----------
     //    |   |
-    static let horizontalMiddle: WinLine  = ([Line.column1, Line.row2],
-                                             [Line.column3, Line.row2])
+    static let horizontalMiddle: WinLine = ([Line.horizontalColumn1, Line.row2],
+                                            [Line.horizontalColumn3, Line.row2])
 
     //    |   |
     // -----------
     //    |   |
     // -----------
     //  x | x | x
-    static let horizontalBottom: WinLine = ([Line.column1, Line.row3],
-                                            [Line.column3, Line.row3])
+    static let horizontalBottom: WinLine = ([Line.horizontalColumn1, Line.horizontalRow3],
+                                            [Line.horizontalColumn3, Line.horizontalRow3])
 
     //  x |   |
     // -----------
     //  x |   |
     // -----------
     //  x |   |
-    static let verticalLeading: WinLine = ([Line.column1, Line.row1],
-                                           [Line.column1, Line.row3])
+    static let verticalLeading: WinLine = ([Line.verticalColumn1, Line.verticalRow1],
+                                           [Line.verticalColumn1, Line.verticalRow3])
 
     //    | x |
     // -----------
     //    | x |
     // -----------
     //    | x |
-    static let verticalMiddle: WinLine = ([Line.column2, Line.row1],
-                                          [Line.column2, Line.row3])
+    static let verticalMiddle: WinLine = ([Line.column2, Line.verticalRow1],
+                                          [Line.column2, Line.verticalRow3])
 
     //    |   | x
     // -----------
     //    |   | x
     // -----------
     //    |   | x
-    static let verticalTrailing: WinLine = ([Line.column3, Line.row1],
-                                            [Line.column3, Line.row3])
+    static let verticalTrailing: WinLine = ([Line.verticalColumn3, Line.verticalRow1],
+                                            [Line.verticalColumn3, Line.verticalRow3])
 
     //  x |   |
     // -----------
     //    | x |
     // -----------
     //    |   | x
-    static let diagonalTopLeft: WinLine = ([Line.column1, Line.row1],
-                                           [Line.column3, Line.row3])
+    static let diagonalTopLeft: WinLine = ([Line.diagonalColumn1, Line.diagonalRow1],
+                                           [Line.diagonalColumn3, Line.diagonalRow3])
 
     //    |   | x
     // -----------
     //    | x |
     // -----------
     //  x |   |
-    static let diagonalTopRight: WinLine = ([Line.column3, Line.row1],
-                                            [Line.column1, Line.row1])
+    static let diagonalTopRight: WinLine = ([Line.diagonalColumn3, Line.diagonalRow3],
+                                            [Line.diagonalColumn1, Line.diagonalRow1])
 
     //       Column 1 |   Column 2 |  Column 3
     // Row 1  [1, 1]  |   [2, 1]   |   [3, 1]
@@ -115,11 +123,11 @@ struct WinLineView: View {
     let end: CGPoint
     let color: Color
     @EnvironmentObject var game: Game
-
     @State private var isAnimating = false
+
     var body: some View {
         Line(start: start, end: end)
-            .trim(from: isAnimating ? 0 : 1, to: 1)
+            .trim(from: 0, to: isAnimating ? 1 : 0)
             .stroke(color, lineWidth: 15)
             .animation(Animation
                 .easeInOut(duration: 0.6)
@@ -143,8 +151,8 @@ struct WinLineView_Previews: PreviewProvider {
             //    |   |
             // -----------
             //    |   |
-            WinLineView(start: [Line.column1, Line.row1],
-                        end: [Line.column3, Line.row1],
+            WinLineView(start: Line.horizontalTop.start,
+                        end: Line.horizontalTop.end,
                         color: .red)
 
             //    |   |
@@ -152,8 +160,8 @@ struct WinLineView_Previews: PreviewProvider {
             //  x | x | x
             // -----------
             //    |   |
-            WinLineView(start: [Line.column1, Line.row2],
-                        end: [Line.column3, Line.row2],
+            WinLineView(start: Line.horizontalMiddle.start,
+                        end: Line.horizontalMiddle.end,
                         color: .red)
 
             //    |   |
@@ -161,8 +169,8 @@ struct WinLineView_Previews: PreviewProvider {
             //    |   |
             // -----------
             //  x | x | x
-            WinLineView(start: [Line.column1, Line.row3],
-                        end: [Line.column3, Line.row3],
+            WinLineView(start: Line.horizontalBottom.start,
+                        end: Line.horizontalBottom.end,
                         color: .red)
 
             //  x |   |
@@ -170,8 +178,8 @@ struct WinLineView_Previews: PreviewProvider {
             //  x |   |
             // -----------
             //  x |   |
-            WinLineView(start: [Line.column1, Line.row1],
-                        end: [Line.column1, Line.row3],
+            WinLineView(start: Line.verticalLeading.start,
+                        end: Line.verticalLeading.end,
                         color: .red)
 
             //    | x |
@@ -179,8 +187,8 @@ struct WinLineView_Previews: PreviewProvider {
             //    | x |
             // -----------
             //    | x |
-            WinLineView(start: [Line.column2, Line.row1],
-                        end: [Line.column2, Line.row3],
+            WinLineView(start: Line.verticalMiddle.start,
+                        end: Line.verticalMiddle.end,
                         color: .red)
 
             //    |   | x
@@ -188,8 +196,8 @@ struct WinLineView_Previews: PreviewProvider {
             //    |   | x
             // -----------
             //    |   | x
-            WinLineView(start: [Line.column3, Line.row1],
-                        end: [Line.column3, Line.row3],
+            WinLineView(start: Line.verticalTrailing.start,
+                        end: Line.verticalTrailing.end,
                         color: .red)
 
             //  x |   |
@@ -197,8 +205,8 @@ struct WinLineView_Previews: PreviewProvider {
             //    | x |
             // -----------
             //    |   | x
-            WinLineView(start: [Line.column1, Line.row1],
-                        end: [Line.column3, Line.row3],
+            WinLineView(start: Line.diagonalTopLeft.start,
+                        end: Line.diagonalTopLeft.end,
                         color: .red)
 
             //    |   | x
@@ -206,11 +214,11 @@ struct WinLineView_Previews: PreviewProvider {
             //    | x |
             // -----------
             //  x |   |
-            WinLineView(start: [Line.column3, Line.row1],
-                        end: [Line.column1, Line.row3],
+            WinLineView(start: Line.diagonalTopRight.start,
+                        end: Line.diagonalTopRight.end,
                         color: .red)
 
         }
-            .previewLayout(.sizeThatFits)
+        .previewLayout(.sizeThatFits)
     }
 }

@@ -17,6 +17,7 @@
 		FB09D85D24299C020051BA26 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB09D85C24299C020051BA26 /* GameOverView.swift */; };
 		FB09D85F24299C550051BA26 /* BoardRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB09D85E24299C550051BA26 /* BoardRowView.swift */; };
 		FB09D86124299C7B0051BA26 /* BoardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB09D86024299C7B0051BA26 /* BoardButton.swift */; };
+		FB1E4080242CF688000C3E9A /* WinLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1E407F242CF688000C3E9A /* WinLineView.swift */; };
 		FB87CB5F2429A3D40010D581 /* XAndOView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB87CB5E2429A3D40010D581 /* XAndOView.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		FB09D85C24299C020051BA26 /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
 		FB09D85E24299C550051BA26 /* BoardRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardRowView.swift; sourceTree = "<group>"; };
 		FB09D86024299C7B0051BA26 /* BoardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardButton.swift; sourceTree = "<group>"; };
+		FB1E407F242CF688000C3E9A /* WinLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinLineView.swift; sourceTree = "<group>"; };
 		FB87CB5E2429A3D40010D581 /* XAndOView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XAndOView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,6 +74,7 @@
 				FB09D85E24299C550051BA26 /* BoardRowView.swift */,
 				FB09D86024299C7B0051BA26 /* BoardButton.swift */,
 				FB87CB5E2429A3D40010D581 /* XAndOView.swift */,
+				FB1E407F242CF688000C3E9A /* WinLineView.swift */,
 				FB09D85C24299C020051BA26 /* GameOverView.swift */,
 				FB09D85A2429955D0051BA26 /* Game.swift */,
 				FB09D75C24295C4C0051BA26 /* Assets.xcassets */,
@@ -166,6 +169,7 @@
 				FB09D85D24299C020051BA26 /* GameOverView.swift in Sources */,
 				FB09D86124299C7B0051BA26 /* BoardButton.swift in Sources */,
 				FB09D75724295C4A0051BA26 /* AppDelegate.swift in Sources */,
+				FB1E4080242CF688000C3E9A /* WinLineView.swift in Sources */,
 				FB09D75924295C4A0051BA26 /* SceneDelegate.swift in Sources */,
 				FB09D75B24295C4A0051BA26 /* ContentView.swift in Sources */,
 				FB09D85B2429955D0051BA26 /* Game.swift in Sources */,

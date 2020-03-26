@@ -20,15 +20,19 @@ struct ContentView: View {
     }
 
     var body: some View {
-        VStack {
-            BoardRowView(rowIndex: 0)
-            BoardRowView(rowIndex: 1)
-            BoardRowView(rowIndex: 2)
-        }.overlay(gameOverOverlay)
-        .padding()
-        .sheet(isPresented: $game.isShowingPlayAgain) {
-            GameOverView()
-                .environmentObject(self.game)
+        NavigationView {
+            VStack {
+                BoardRowView(rowIndex: 0)
+                BoardRowView(rowIndex: 1)
+                BoardRowView(rowIndex: 2)
+            }.overlay(gameOverOverlay)
+            .padding()
+            .sheet(isPresented: $game.isShowingPlayAgain) {
+                GameOverView()
+                    .environmentObject(self.game)
+            }
+            .navigationBarTitle("\(game.activePlayer?.title ?? "")", displayMode:.inline)
+            .background(Color.gray)
         }
     }
 }

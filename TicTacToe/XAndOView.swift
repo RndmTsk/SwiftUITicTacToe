@@ -47,13 +47,13 @@ struct OView: View {
     @State var aniamte = false
     var body: some View {
         Circle()
-             .trim(from: aniamte ? 0 : 1, to: 1)
-             .stroke(lineWidth: 15)
-             .foregroundColor(color)
-             .padding()
-             .rotationEffect(.degrees(5), anchor: .center)
-            .animation(Animation.linear(duration: 0.3))
-             .onAppear() {
+            .trim(from: aniamte ? 0 : 1, to: 1)
+            .stroke(lineWidth: 15)
+            .foregroundColor(color)
+            .padding()
+            .rotationEffect(.degrees(5), anchor: .center)
+            .animation(.easeInOut(duration: 0.4))
+            .onAppear() {
                 self.aniamte.toggle()
         }
     }
@@ -69,7 +69,7 @@ struct XView: View {
             .stroke(lineWidth: 15)
             .foregroundColor(color)
             .padding()
-            .animation(Animation.linear(duration: 0.3))
+            .animation(.easeInOut(duration: 0.4))
             .onAppear() {
                self.aniamte.toggle()
             }

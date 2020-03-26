@@ -23,11 +23,20 @@ typealias WinLine = (start: CGPoint, end: CGPoint)
 class Game: ObservableObject {
     @Published var winLine: WinLine?
     @Published var isGameOver = false
+    @Published var isShowingPlayAgain = false
     @Published var activePlayer: Bool? = true
     @Published var board: [Bool?] = Array(repeating: nil, count: 9) {
         didSet {
             checkGameOver()
         }
+    }
+
+    func reset() {
+        board = Array(repeating: nil, count: 9)
+        activePlayer = true
+        winLine = nil
+        isGameOver = false
+        isShowingPlayAgain = false
     }
 
     private func checkGameOver() {
@@ -122,6 +131,7 @@ class Game: ObservableObject {
         if board.allSatisfy({ $0 != nil }) {
             activePlayer = nil
             isGameOver = true
+            isShowingPlayAgain = true
         }
     }
 }

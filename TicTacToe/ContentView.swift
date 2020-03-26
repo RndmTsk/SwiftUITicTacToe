@@ -10,6 +10,7 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var game: Game
+
     var gameOverOverlay: some View {
         if let winLine = game.winLine {
             return AnyView(WinLineView(start: winLine.start, end: winLine.end, color: game.activePlayer!.color))
@@ -26,11 +27,11 @@ struct ContentView: View {
                 BoardRowView(rowIndex: 2)
             }.overlay(gameOverOverlay)
             .padding()
-    //        .sheet(isPresented: self.$game.isGameOver) {
-    //            GameOverView()
-    //                .environmentObject(self.game)
-    //        }
-            .navigationBarTitle("\(game.activePlayer?.title ?? "")", displayMode:.inline )
+            .sheet(isPresented: $game.isShowingPlayAgain) {
+                GameOverView()
+                    .environmentObject(self.game)
+            }
+            .navigationBarTitle("\(game.activePlayer?.title ?? "")", displayMode:.inline)
             .background(Color.gray)
         }
     }

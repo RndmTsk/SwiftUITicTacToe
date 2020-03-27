@@ -38,9 +38,9 @@ struct BoardButton: View {
     private func toggle() {
         withAnimation {
             self.game.board[self.cellIndex] = self.game.activePlayer
+            guard !game.isGameOver else { return }
+            game.activePlayer?.toggle()
         }
-        guard !game.isGameOver else { return }
-        game.activePlayer?.toggle()
     }
 }
 

@@ -20,7 +20,7 @@ struct ContentView: View {
     }
 
     var body: some View {
-//        NavigationView {
+        NavigationView {
             VStack {
                 BoardRowView(rowIndex: 0)
                 BoardRowView(rowIndex: 1)
@@ -34,7 +34,7 @@ struct ContentView: View {
                 GameOverView()
                     .environmentObject(self.game)
             }
-//        }
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
